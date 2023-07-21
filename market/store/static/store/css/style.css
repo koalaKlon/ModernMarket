@@ -160,7 +160,6 @@ nav a{
    background-color:  #3c3d41;
  }
  #search_button{
-   position: absolute;
    cursor: pointer;
    right: 0;
    width: 2.5vmax;

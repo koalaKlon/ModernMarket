@@ -1,4 +1,6 @@
 {% load static %}
+{% load compress %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,15 +9,14 @@
     <title>{{ title }}</title>
 
     <link rel="SHORTCUT ICON" href="{% static 'store/img/favicon.ico' %}" type="image/x-icon">
+    {% compress css %}
     <link type="text/css" href="{% static 'store/css/style.css' %}?v=2" rel="stylesheet">
+    {% endcompress %}
     <link type='' href="{% static 'store/css/base/jquery-ui-1.9.2.custom.css' %}" rel="stylesheet">
 
 
     <script src="{% static 'store/js/jquery-1.8.3.js' %}"></script>
     <script src="{% static 'store/js/jquery-ui-1.9.2.custom.js' %}"></script>
-
-
-
 </head>
 
 <body>
@@ -310,8 +311,5 @@
     </div>
   </div>
 </footer>
-
-<script src="{% static 'store/js/script.js' %}"></script>
-
 </body>
 </html>
