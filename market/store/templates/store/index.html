@@ -239,12 +239,30 @@
                 </div>
             </div>
         </div>
+    <div id="rightbar">
+    <div class="list_product">
+        {% for product in products %}
+        <div class="product box anime">
+          <div class="img_product">
+                <img src='{{ product.image.url }}' alt="asdf">
+          </div>
+            <h2><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h2>
+            <p>{{ product.category }}</p>
+            <div class="description">
+                <p> {{ product.description }} </p>
+            </div>
+            <p class="price"> ${{ product.price }} </p>
+            <button class="btn">Добавить в корзину</button>
+        </div>
+      {% endfor %}
+    </div>
+</div>
         {% endblock %}
+
     </main>
 
     <!-- Нижняя часть сайта, включая footer -->
     <footer>
-        <!-- Ваш код для footer -->
         <div class="wrap">
             <nav id="footer_nav">
                 <li><a href="#">ИНФОРМАЦИЯ</a></li>
