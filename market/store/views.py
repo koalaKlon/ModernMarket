@@ -83,7 +83,3 @@ def product_list(request, category_slug):
                              })
 
 
-# def product_detail(request, id, slug):
-#     product = get_object_or_404(Product, id=id, slug=slug, available=True)
-#     return render(request, 'store/index.html',
-#                   {'product': product})

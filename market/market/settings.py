@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store',
+    'cart',
     'crispy_forms',
     'compressor',
 
@@ -65,6 +66,8 @@ WSGI_APPLICATION = 'market.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
+CART_SESSION_ID = 'cart'
 
 DATABASES = {
     'default': {

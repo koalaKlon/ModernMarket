@@ -80,11 +80,13 @@
                 Валюта:
                 <span>US DOLLAR</span>
             </div>
-            <div id="cart" class="btn anime">
-                <p class="counter"></p>
-                <img src="{% static 'store/img/2.png' %}">
-                КОРЗИНА
-            </div>
+            <a href="{% url 'cart:cart_detail' %}">
+                <div id="cart" class="btn anime">
+                    <p class="counter"></p>
+                    <img src="{% static 'store/img/2.png' %}">
+                    КОРЗИНА
+                </div>
+            </a>
         </div>
         <div id="menu" class="wrap">
             <nav id="main_nav">
