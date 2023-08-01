@@ -248,13 +248,17 @@
           <div class="img_product">
                 <img src='{{ product.image.url }}' alt="asdf">
           </div>
-            <h2><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h2>
-            <p>{{ product.category }}</p>
+           <a href="{{ product.get_absolute_url }}"><h2>{{ product.name }}</h2> </a><p>{{ product.category }}</p>
             <div class="description">
                 <p> {{ product.description }} </p>
             </div>
             <p class="price"> ${{ product.price }} </p>
-            <button class="btn">Добавить в корзину</button>
+            <!-- тут пока экскрементирую
+            <form action='{% url "cart:cart_add" product.id %}' method="post">
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <input type="submit" value="Add to cart">
+            </form> -->
         </div>
       {% endfor %}
     </div>

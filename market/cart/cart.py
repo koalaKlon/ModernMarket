@@ -48,7 +48,13 @@ class Cart(object):
             yield item
 
     def __len__(self):
-        return sum(self.cart['quantity'] for item in self.cart.values())
+        # Инициализировать общее количество товаров нулем
+        total_quantity = 0
+        for item in self.cart.values():
+            # Проверить, есть ли ключ 'quantity' в словаре товара
+            if 'quantity' in item:
+                total_quantity += item['quantity']
+        return total_quantity
 
     def get_total_price(self):
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())

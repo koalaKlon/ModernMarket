@@ -1,14 +1,10 @@
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
-from django.urls import reverse_lazy
-from django.views.generic import CreateView
 from .forms import UserRegistrationForm
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import AuthenticationForm #add this
+from django.contrib.auth.forms import AuthenticationForm
 from .models import Category, Product
+from cart.forms import CartAddProductForm
 
 # Create your views here.
 
@@ -23,9 +19,18 @@ def index(request, category_slug=None):
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
     return render(request, 'store/index.html',
-                            {'category': category,
-                            'categories': categories,
-                            'products': products})
+                  {'category': category,
+                   'categories': categories,
+                   'products': products})
+
+
+def product_detail(request, id, slug):
+    print(f"Received ID: {id}, Slug: {slug}")
+    product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    print(f"Product found: {product}")
+    cart_product_form = CartAddProductForm()
+    return render(request, 'store/product/detail.html', {'product': product,
+                                                         'cart_product_form': cart_product_form})
 
 
 def login_request(request):
@@ -67,19 +72,3 @@ def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logged out. ")
     return redirect("store:home")
-
-
-def product_list(request, category_slug):
-    category = category_slug
-    categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
-    if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
-        products = products.filter(category=category)
-    return render(request, 'store/index.html',
-                            {'category': category,
-                             'categories': categories,
-                             'products': products,
-                             })
-
-

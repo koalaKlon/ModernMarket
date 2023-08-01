@@ -10,6 +10,8 @@ urlpatterns = [
     path('register', views.register_request, name='register'),
     path('login', views.login_request, name='login'),
     path('logout', views.logout_request, name='logout'),
+    path('<int:id>/<slug:slug>/', views.product_detail, name='product_detail'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
