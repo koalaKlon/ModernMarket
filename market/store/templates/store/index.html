@@ -22,10 +22,10 @@
     <!-- Верхняя часть сайта, включая header, навигацию и поиск -->
     <div id="black_fill"></div>
     <div id="cart_box" class="anime">
-        <div class="title_cart">
-            <p>МОЯ КОРЗИНА</p>
-            <img src="{% static 'store/img/next.png' %}">
-        </div>
+            <div class="title_cart">
+                    <p>МОЯ КОРЗИНА</p>
+                <img src="{% static 'store/img/next.png' %}">
+            </div>
         <p>Общая сумма: <span class='price_total'>0</span></p>
         <div class="content_cart"></div>
         <div id="order" class="btn anime">
@@ -80,13 +80,23 @@
                 Валюта:
                 <span>US DOLLAR</span>
             </div>
-            <a href="{% url 'cart:cart_detail' %}">
-                <div id="cart" class="btn anime">
-                    <p class="counter"></p>
-                    <img src="{% static 'store/img/2.png' %}">
-                    КОРЗИНА
-                </div>
-            </a>
+
+<a href="{% url 'cart:cart_detail' %}">
+    <div id="cart" class="btn anime">
+        {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+        <img src="{% static 'store/img/2.png' %}">
+        КОРЗИНА
+        <p class="counter">
+            , {{ total_items }} {{ total_items|pluralize }},
+            ${{ cart.get_total_price }}
+        </p>
+        {% else %}
+        КОРЗИНА
+        {% endif %}
+        {% endwith %}
+    </div>
+</a>
         </div>
         <div id="menu" class="wrap">
             <nav id="main_nav">
