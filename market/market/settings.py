@@ -69,6 +69,8 @@ WSGI_APPLICATION = 'market.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 CART_SESSION_ID = 'cart'
 
 DATABASES = {
