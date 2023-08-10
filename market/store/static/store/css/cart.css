@@ -1,0 +1,68 @@
+/* Стили для таблицы с товарами в корзине */
+.cart {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.cart th, .cart td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.cart th {
+  background-color: #f2f2f2;
+}
+
+.cart img {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+/* Стили для кнопки "Remove" */
+.cart a {
+  color: #e74c3c;
+  text-decoration: none;
+}
+
+.cart a:hover {
+  text-decoration: underline;
+}
+
+/* Стили для общей суммы заказа */
+.total {
+  font-weight: bold;
+}
+
+/* Стили для кнопок продолжения покупок и оформления заказа */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  text-decoration: none;
+  background-color: #3498db;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button.light {
+  background-color: #f39c12;
+}
+
+.button:hover {
+  background-color: #2980b9;
+}
+.cart-title {
+  font-size: 24px; /* Размер шрифта */
+  font-weight: bold; /* Жирный шрифт */
+  margin-bottom: 20px; /* Отступ снизу */
+}
+.cart-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333; /* Цвет текста */
+  text-transform: uppercase; /* Преобразование текста в верхний регистр */
+}

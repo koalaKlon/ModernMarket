@@ -1,0 +1,131 @@
+/* Адаптивные стили для контейнера */
+.order-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Адаптивные стили для информации о заказе */
+.order-info {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.order-info h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.order-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.order-info li {
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-info span {
+    font-weight: bold;
+}
+
+.order-info p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Адаптивные стили для формы заказа */
+.order-form {
+    width: 80%;
+}
+
+.order-form label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.order-form input[type="text"],
+.order-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.order-form input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #24b4b4;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.order-form input[type="submit"]:hover {
+    background-color: #3c3d41;
+}
+.thank-you-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.thank-you-content {
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.thank-you-content h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.thank-you-content p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+    .thank-you-content {
+        width: 90%;
+    }
+
+    .thank-you-content h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .thank-you-content p {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 768px) {
+    .order-info, .order-form {
+        width: 100%;
+    }
+}

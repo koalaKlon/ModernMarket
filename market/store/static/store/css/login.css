@@ -1,0 +1,63 @@
+.container {
+    margin-top: 50px;
+}
+
+/* Стили для карточки */
+.card {
+    border: none;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 24px;
+    color: #333;
+}
+
+.card-body {
+    padding: 30px;
+}
+
+/* Стили для формы */
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #24b4b4;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #3c3d41;
+}
+
+/* Стили для ссылки */
+a {
+    color: #24b4b4;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+    .card {
+        margin: 0 auto;
+        max-width: 90%;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+}

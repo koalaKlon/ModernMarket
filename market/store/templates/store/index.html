@@ -12,6 +12,12 @@
 
     {% compress css %}
     <link type="text/css" href="{% static 'store/css/style.css' %}?v=2" rel="stylesheet">
+    <link type="text/css" href="{% static 'store/css/head.css' %}?v=2" rel="stylesheet">
+    <link type="text/css" href="{% static 'store/css/cart.css' %}?v=2" rel="stylesheet">
+    <link type="text/css" href="{% static 'store/css/product.css' %}?v=2" rel="stylesheet">
+    <link type="text/css" href="{% static 'store/css/reg.css' %}?v=2" rel="stylesheet">
+    <link type="text/css" href="{% static 'store/css/login.css' %}?v=2" rel="stylesheet">
+    <link type="text/css" href="{% static 'store/css/order.css' %}?v=2" rel="stylesheet">
     {% endcompress %}
     <script src="{% static 'store/js/jquery-1.8.3.js' %}"></script>
     <script src="{% static 'store/js/jquery-ui-1.9.2.custom.js' %}"></script>
@@ -22,11 +28,11 @@
     <!-- Верхняя часть сайта, включая header, навигацию и поиск -->
     <div id="black_fill"></div>
     <div id="cart_box" class="anime">
-            <div class="title_cart">
-                    <p>МОЯ КОРЗИНА</p>
-                <img src="{% static 'store/img/next.png' %}">
-            </div>
-        <p>Общая сумма: <span class='price_total'>0</span></p>
+        <div class="title_cart">
+            <p>МОЯ КОРЗИНА</p>
+            <img src="{% static 'store/img/next.png' %}">
+        </div>
+        <p>Общая сумма: <span class="price_total">0</span></p>
         <div class="content_cart"></div>
         <div id="order" class="btn anime">
             ЗАКАЗАТЬ
@@ -69,34 +75,27 @@
 
                 </div>
             </nav>
-            <div id="location">
-                Страна:
-                <span>РОССИЯ</span>
-            </div>
             <div id="logo">
                 <a href="{% url 'store:home' %}"> Fashion look </a>
             </div>
-            <div id="currency">
-                Валюта:
-                <span>US DOLLAR</span>
-            </div>
-
-<a href="{% url 'cart:cart_detail' %}">
-    <div id="cart" class="btn anime">
-        {% with total_items=cart|length %}
-        {% if cart|length > 0 %}
-        <img src="{% static 'store/img/2.png' %}">
-        КОРЗИНА
-        <p class="counter">
-            , {{ total_items }} {{ total_items|pluralize }},
-            ${{ cart.get_total_price }}
-        </p>
-        {% else %}
-        КОРЗИНА
-        {% endif %}
-        {% endwith %}
-    </div>
-</a>
+            <a href="{% url 'cart:cart_detail' %}">
+                <div id="cart" class="btn anime">
+                    {% with total_items=cart|length %}
+                    {% if cart|length > 0 %}
+                    <img src="{% static 'store/img/2.png' %}">
+                    КОРЗИНА
+                    <div class="counter-circle">
+                        <p class="counter">
+                            {{ total_items }}
+                        </p>
+                    </div>
+                    ${{ cart.get_total_price }}
+                    {% else %}
+                    КОРЗИНА
+                    {% endif %}
+                    {% endwith %}
+                </div>
+            </a>
         </div>
         <div id="menu" class="wrap">
             <nav id="main_nav">
@@ -114,7 +113,6 @@
                 <img src="{% static 'store/img/3.png' %}" id="searchbutton">
             </div>
         </div>
-        </div>
     </header>
     <div id="banner">
         <img src="{% static 'store/img/Brand.png' %}">
@@ -122,159 +120,26 @@
     <!-- Основное содержимое страницы -->
     <main class="wrap">
         {% block content %}
-        <div id="leftbar">
-            <div id='category' class="box">
-                <div class="list_box">
-                    <div class="title_box">
-                        <p>ОДЕЖДА</p>
-                        <img src="{% static 'store/img/4.png' %}">
+        <div id="rightbar">
+            <div class="list_product">
+                {% for product in products %}
+                <a href="{{ product.get_absolute_url }}">
+                    <div class="product box anime">
+                        <div class="img_product">
+                            <img src='{{ product.image.url }}' alt="asdf">
+                        </div>
+                        <h2>{{ product.name }}</h2>
+                        <p>{{ product.category }}</p>
+                        <div class="description">
+                            <p> {{ product.description }} </p>
+                        </div>
+                        <p class="price"> ${{ product.price }} </p>
                     </div>
-                    <div class="list_link">
-                        <nav>
-                            <li><a href="#" class="anime">ПЛАТЬЯ</a></li>
-                            <li><a href="#" class="anime">БЛУЗКИ</a></li>
-                            <li><a href="#" class="anime">БРЮКИ</a></li>
-                            <li><a href="#" class="anime">ДЖИНСЫ</a></li>
-                            <li><a href="#" class="anime">ЮБКИ</a></li>
-                            <li><a href="#" class="anime">СВИТШОТЫ</a></li>
-                        </nav>
-                    </div>
-                </div>
-                <div class="list_box">
-                    <div class="title_box">
-                        <p>ОБУВЬ</p>
-                        <img src="{% static 'store/img/4.png' %}">
-                    </div>
-                    <div class="list_link">
-                        <nav>
-                            <li><a href="#" class="anime">ТУФЛИ</a></li>
-                            <li><a href="#" class="anime">БОСОНОЖКИ</a></li>
-                            <li><a href="#" class="anime">КРОССОВКИ</a></li>
-                            <li><a href="#" class="anime">КЕДЫ</a></li>
-                            <li><a href="#" class="anime">БОТИНКИ</a></li>
-                            <li><a href="#" class="anime">САПОГИ</a></li>
-                        </nav>
-                    </div>
-                </div>
-                <div class="list_box">
-                    <div class="title_box">
-                        <p>ВЕРХНЯЯ ОДЕЖДА</p>
-                        <img src="{% static 'store/img/4.png' %}">
-                    </div>
-                    <div class="list_link">
-                        <nav>
-                            <li><a href="#" class="anime">ПАЛЬТО</a></li>
-                            <li><a href="#" class="anime">КУРТКИ</a></li>
-                            <li><a href="#" class="anime">ПЛАЩИ</a></li>
-                            <li><a href="#" class="anime">ПАРКИ</a></li>
-                            <li><a href="#" class="anime">ВЕТРОВКИ</a></li>
-                            <li><a href="#" class="anime">ПУХОВИКИ</a></li>
-                        </nav>
-                    </div>
-                </div>
-                <div class="list_box">
-                    <div class="title_box">
-                        <p>АКСЕССУАРЫ</p>
-                        <img src="{% static 'store/img/4.png' %}">
-                    </div>
-                    <div class="list_link">
-                        <nav>
-                            <li><a href="#" class="anime">СУМКИ</a></li>
-                            <li><a href="#" class="anime">ШАРФЫ</a></li>
-                            <li><a href="#" class="anime">БИЖУТЕРИЯ</a></li>
-                            <li><a href="#" class="anime">ЧАСЫ</a></li>
-                            <li><a href="#" class="anime">ШЛЯПЫ</a></li>
-                            <li><a href="#" class="anime">РЕМНИ</a></li>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <div class="filter_box box">
-                <div class="title_filter">
-                    <p>ЦВЕТА</p>
-                </div>
-                <div class="content_filter">
-                    <ul class="list_filter color_list">
-                        <li>
-                            <input id="blue" type="checkbox">
-                            <label style="background-color: #3585e6" for="blue"></label>
-                        </li>
-                        <li><input id="dark_blue" type="checkbox"><label style="background-color: #21389e"
-                                for="dark_blue"></label></li>
-                        <li><input id="purple" type="checkbox"><label style="background-color: #9320d6"
-                                for="purple"></label></li>
-                        <li><input id="pink" type="checkbox"><label style="background-color: #e97ec9"
-                                for="pink"></label>
-                        </li>
-                        <li><input id="red" type="checkbox"><label style="background-color: #d41132" for="red"></label>
-                        </li>
-                        <li><input id="orange" type="checkbox"><label style="background-color: #ce750f"
-                                for="orange"></label></li>
-                        <li><input id="yellow" type="checkbox"><label style="background-color: #eee239"
-                                for="yellow"></label></li>
-                        <li><input id="green" type="checkbox"><label style="background-color: #2fc572"
-                                for="green"></label>
-                        </li>
-                        <li><input id="grey" type="checkbox"><label style="background-color: #6f7174"
-                                for="grey"></label>
-                        </li>
-                        <li><input id="black" type="checkbox"><label style="background-color: #000000"
-                                for="black"></label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="filter_box box">
-                <div class="title_filter">
-                    <p>РАЗМЕРЫ</p>
-                </div>
-                <div class="content_filter">
-                    <ul class="list_filter">
-                        <li><input id="size1" type="checkbox"><label for="size1">XS</label></li>
-                        <li><input checked id="size2" type="checkbox"><label for="size2">S</label></li>
-                        <li><input id="size3" type="checkbox"><label for="size3">M</label></li>
-                        <li><input id="size4" type="checkbox"><label for="size4">L</label></li>
-                        <li><input id="size5" type="checkbox"><label for="size5">XL</label></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="filter_box box">
-                <div class="title_filter">
-                    <p>ЦЕНА</p>
-                </div>
-                <div class="content_filter">
-                    <div id="slider_price"></div>
-                    <div class="price_box">
-                        <input type="text" name="minPrice">
-                        <input type="text" name="maxPrice">
-                    </div>
-                </div>
+                </a>
+                {% endfor %}
             </div>
         </div>
-    <div id="rightbar">
-    <div class="list_product">
-        {% for product in products %}
-        <div class="product box anime">
-          <div class="img_product">
-                <img src='{{ product.image.url }}' alt="asdf">
-          </div>
-           <a href="{{ product.get_absolute_url }}"><h2>{{ product.name }}</h2> </a><p>{{ product.category }}</p>
-            <div class="description">
-                <p> {{ product.description }} </p>
-            </div>
-            <p class="price"> ${{ product.price }} </p>
-            <!-- тут пока экскрементирую
-            <form action='{% url "cart:cart_add" product.id %}' method="post">
-                {{ cart_product_form }}
-                {% csrf_token %}
-                <input type="submit" value="Add to cart">
-            </form> -->
-        </div>
-      {% endfor %}
-    </div>
-</div>
         {% endblock %}
-
     </main>
 
     <!-- Нижняя часть сайта, включая footer -->

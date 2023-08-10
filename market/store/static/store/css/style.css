@@ -82,14 +82,7 @@ main{
   height: 2.5vmax;
   padding-right: 1vw;
 }
-
-#location, #currency{
-  font-family: "PT Serif";
-  color: #aaaaaa;
-  padding: 1.05vw 0.32vw;
-  width: 9.5vw;
-}
-#location span, #currency span{
+span{
   font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
   color: #fff;
   cursor: pointer;
@@ -109,15 +102,7 @@ main{
 #logo {
   text-align: center;
 }
-#cart {
-  display: flex; display: -webkit-box;display: -ms-flexbox;display:-webkit-flex;
-  align-items:center;-webkit-align-items:center;-ms-align-items:center;
-  justify-content:space-between;-webkit-justify-content:space-between;-ms-justify-content:space-between;
-  border: 1px solid #24b4b4;
-  color: #24b4b4;
-  font-size: 1.03vw;
-  height: auto;
-}
+
 #cart:hover {
   background-color: #24b4b4;
   color: #fff;
@@ -184,11 +169,10 @@ nav a{
    min-height: 100%;
    width: 100%;
  }
-#leftbar{
-  width: 19.16vw;
-}
 #rightbar{
   width: 60.83vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 .box{
   border-radius: 0.33vw;
@@ -284,13 +268,13 @@ h2 {
 .tag{
   background-color: #84ce8b;
   color: #fff;
-  padding: 0.31vmax;
-  font-size:0.73vmax;
+  padding: 1.31vmax;
+  font-size: 1.73vmax;
   position: absolute;
-  right:1.66vw;
-  top:1.66vmax;
+  right: 1.66vw;
+  top: 1.66vmax;
   z-index: 1;
-  letter-spacing:0.2vw;
+  letter-spacing: 0.2vw;
 }
 .list_box{
   width:100;
@@ -639,16 +623,16 @@ footer{
   main{
     flex-direction:column;-webkit-flex-direction:column;-ms-flex-direction:column;
   }
-  #leftbar{
-    width: 86.66vw;
-  }
-  #rightbar{
-    margin-top: 4vh;
-    width: 86.66vw;
-  }
+
+#rightbar {
+  margin-top: 4vh;
+  width: 86.66vw;
+  margin-left: auto;
+  margin-right: auto;
+}
   .product{
-    width: 70.16vw;
-    height: 40vmax;
+    width: 100%; /* Ширина на мобильных устройствах */
+    height: auto;
   }
   .img_product{
     height: 33.33vmax;
@@ -657,7 +641,8 @@ footer{
     margin-right:1.66vw;
   }
   .product h2{
-    font-size: 2.25vmax;
+    font-size: 2.25rem; /* Увеличиваем размер шрифта для заголовка */
+    margin: 10px 0;
   }
   .product p:first-of-type{
     font-size: 2vmax;
@@ -667,15 +652,10 @@ footer{
     font-size: 2vmax;
   }
   .tag{
-    background-color: #84ce8b;
-    color: #fff;
-    padding: 1.31vmax;
-    font-size:1.73vmax;
-    position: absolute;
-    right:1.66vw;
-    top:1.66vmax;
-    z-index: 1;
-    letter-spacing:0.2vw;
+    padding: 1.31rem; /* Устанавливаем размер отступов для тега */
+    font-size: 2rem; /* Увеличиваем размер шрифта для тега */
+    right: 1rem; /* Отступ от правой стороны */
+    top: 1rem; /* Отступ сверху */
   }
   .btn {
     margin: 2vmax 0;
@@ -692,7 +672,7 @@ footer{
     display: flex;
     justify-content: space-between;
   }
-  #location, #currency, #menu{
+  #menu{
     display: none;
   }
   #category, .title_filter{
