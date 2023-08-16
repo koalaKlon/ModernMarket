@@ -1,0 +1,43 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn market.wsgi:application --config gunicorn_config.py"
+    volumes:
+      - ./market:/market
+      - static_data:/market/store/static
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - rabbitmq
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: 'Test'
+      POSTGRES_USER: 'test_admin_user'
+      POSTGRES_PASSWORD: 'test_admin'
+    ports:
+      - "5432:5432"
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    volumes:
+      - static_data:/var/www/html/static
+
+volumes:
+  db:
+    driver: local
+  static_data:

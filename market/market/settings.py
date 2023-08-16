@@ -79,11 +79,12 @@ DATABASES = {
         'NAME': 'Test',
         'USER': 'test_admin_user',
         'PASSWORD': 'test_admin',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
-
+# 'HOST': 'localhost',
+# 'PORT': '5432',
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -118,7 +119,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 
