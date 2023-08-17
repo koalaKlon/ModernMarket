@@ -1,5 +1,5 @@
 {% load static %}
-{% load compress %}
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -10,7 +10,6 @@
     <!-- Ваши общие CSS-файлы -->
     <link rel="SHORTCUT ICON" href="{% static 'store/img/favicon.ico' %}" type="image/x-icon">
 
-    {% compress css %}
     <link type="text/css" href="{% static 'store/css/style.css' %}?v=2" rel="stylesheet">
     <link type="text/css" href="{% static 'store/css/head.css' %}?v=2" rel="stylesheet">
     <link type="text/css" href="{% static 'store/css/cart.css' %}?v=2" rel="stylesheet">
@@ -18,7 +17,7 @@
     <link type="text/css" href="{% static 'store/css/reg.css' %}?v=2" rel="stylesheet">
     <link type="text/css" href="{% static 'store/css/login.css' %}?v=2" rel="stylesheet">
     <link type="text/css" href="{% static 'store/css/order.css' %}?v=2" rel="stylesheet">
-    {% endcompress %}
+
     <script src="{% static 'store/js/jquery-1.8.3.js' %}"></script>
     <script src="{% static 'store/js/jquery-ui-1.9.2.custom.js' %}"></script>
 

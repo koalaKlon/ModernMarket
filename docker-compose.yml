@@ -4,10 +4,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn market.wsgi:application --config gunicorn_config.py"
+    command: bash -c "python /ModernMarket/market/manage.py makemigrations && python /ModernMarket/market/manage.py migrate && python /ModernMarket/market/manage.py collectstatic --noinput && gunicorn market.wsgi:application --config gunicorn_config.py"
     volumes:
-      - ./market:/market
-      - static_data:/market/store/static
+      - .:/ModernMarket/market
+      - static_data:/ModernMarket/market/static
+    expose:
+      - 8000
     ports:
       - "8000:8000"
     depends_on:
@@ -38,6 +40,4 @@ services:
       - static_data:/var/www/html/static
 
 volumes:
-  db:
-    driver: local
   static_data:

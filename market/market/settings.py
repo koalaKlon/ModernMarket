@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-0d%&(donx1tlwl49tpi%&z_w1k-#evb8o0qe^@#_kg3v#@q4=#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     'cart',
     'orders',
     'crispy_forms',
-    'compressor',
 
 ]
 
@@ -79,7 +78,7 @@ DATABASES = {
         'NAME': 'Test',
         'USER': 'test_admin_user',
         'PASSWORD': 'test_admin',
-        'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -119,7 +118,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join('store', 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 
