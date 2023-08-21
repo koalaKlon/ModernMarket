@@ -13,8 +13,6 @@ SECRET_KEY = 'django-insecure-0d%&(donx1tlwl49tpi%&z_w1k-#evb8o0qe^@#_kg3v#@q4=#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -24,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'store',
     'cart',
     'orders',
@@ -42,6 +41,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'market.urls'
@@ -72,17 +72,60 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CART_SESSION_ID = 'cart'
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+#    "http://172.22.0.0/16",
+ ]
+#Faga411uaF
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS'
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with'
+]
+
+ALLOWED_HOSTS = ['localhost']
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_EXPOSE_HEADERS = [
+    'content-type',
+    'authorization'
+]
+
+CORS_ALLOW_ALL_ORIGINS = False
+
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Test',
-        'USER': 'test_admin_user',
-        'PASSWORD': 'test_admin',
-        'HOST': 'localhost',
+        'NAME': 'database',
+        'USER': 'database_role',
+        'PASSWORD': 'database_password',
+        'HOST': 'database',
         'PORT': '5432',
     }
 }
-# 'HOST': 'localhost',
+# 'Name': 'Test'
+# 'USER': 'test_admin_user'
+# 'PASSWORD': 'test_admin'
+# 'HOST': 'localhost', or 'db'
 # 'PORT': '5432',
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -116,15 +159,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'store', 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'store', 'static')
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_URL = '/media/'
+#MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'static')
+MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
