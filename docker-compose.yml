@@ -2,9 +2,11 @@ version: '3'
 services:
   web:
     build: .
-    command: bash -c "python ./market/manage.py makemigrations && python ./market/manage.py migrate && python ./market/manage.py collectstatic --noinput && gunicorn -c config/gunicorn/conf.py --bind :8000 --chdir market market.wsgi:application"
+    command: bash -c "python ./market/manage.py makemigrations && python ./market/manage.py migrate && python ./market/manage.py collectstatic --noinput && gunicorn -c config/gunicorn/conf.py --bind :8000 --chdir market market.wsgi:application && celery -A market worker -l info"
     depends_on:
       - database
+      - rabbitmq
+    links:
       - rabbitmq
     environment:
       - DJANGO_SETTINGS_MODULE
@@ -15,6 +17,7 @@ services:
     networks:
       - database_network
       - nginx_network
+      - rabbitmq_network
 
   database:
     image: postgres:13-alpine
@@ -30,6 +33,11 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
+    networks:
+      - rabbitmq_network
+    volumes:
+      - ./config/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - ./logs/rabbitmq:/var/log/rabbitmq
 
   nginx:
     image: nginx:1.13
@@ -48,6 +56,8 @@ networks:
   nginx_network:
     driver: bridge
   database_network:
+    driver: bridge
+  rabbitmq_network:
     driver: bridge
 
 volumes:

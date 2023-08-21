@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from django.conf import settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +45,19 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+    "http://172.28.0.3:8000",
+]
+
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+CSRF_USE_SESSIONS = False
+
 ROOT_URLCONF = 'market.urls'
 
 TEMPLATES = [
@@ -74,7 +88,8 @@ CART_SESSION_ID = 'cart'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
-#    "http://172.22.0.0/16",
+    "http://172.28.0.3:8000",
+    "http://192.168.128.1",
  ]
 #Faga411uaF
 CORS_ALLOW_METHODS = [
@@ -107,7 +122,7 @@ CORS_EXPOSE_HEADERS = [
     'authorization'
 ]
 
-CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_ALL_ORIGINS = True
 
 USE_X_FORWARDED_HOST = True
 USE_X_FORWARDED_PORT = True
@@ -144,6 +159,26 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+CELERY_APP = 'market.celery:market'
+CELERY_BROKER_URL = 'pyamqp://guest:guest@rabbitmq//'
+CELERY_RESULT_BACKEND = 'rpc://'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+        # Дополнительные обработчики, если нужно
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
