@@ -24,12 +24,11 @@ class Category(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
-    @staticmethod
-    def get_absolute_url():
-        return reverse('store:home')
-
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('store:product_list_by_category', args=[self.slug])
 
 
 class Product(models.Model):

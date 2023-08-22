@@ -11,6 +11,7 @@ urlpatterns = [
     path('login', views.login_request, name='login'),
     path('logout', views.logout_request, name='logout'),
     path('<int:id>/<slug:slug>/', views.product_detail, name='product_detail'),
+    path('<slug:category_slug>/', views.index, name='product_list_by_category'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

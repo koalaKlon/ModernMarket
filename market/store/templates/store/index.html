@@ -7,7 +7,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{{ title }}</title>
-    <!-- Ваши общие CSS-файлы -->
     <link rel="SHORTCUT ICON" href="{% static 'store/img/favicon.ico' %}" type="image/x-icon">
 
     <link type="text/css" href="{% static 'store/css/style.css' %}?v=2" rel="stylesheet">
@@ -24,7 +23,6 @@
 </head>
 
 <body>
-    <!-- Верхняя часть сайта, включая header, навигацию и поиск -->
     <div id="black_fill"></div>
     <div id="cart_box" class="anime">
         <div class="title_cart">
@@ -53,9 +51,7 @@
                     <div class="nav-item">
                         <a class="nav-link" href="#">Welcom, {{user.username}}</a>
                     </div>
-
                     {% else %}
-
                     <a href="{% url 'store:register' %}">
                         <div id="regis" class="btn anime regis">
                             <img src="{% static 'store/img/1.png' %}">
@@ -68,10 +64,7 @@
                             ВОЙТИ
                         </div>
                     </a>
-
-
                     {% endif %}
-
                 </div>
             </nav>
             <div id="logo">
@@ -98,25 +91,16 @@
         </div>
         <div id="menu" class="wrap">
             <nav id="main_nav">
-                <li><a href="#" class="anime">ОДЕЖДА</a></li>
-                <li><a href="#" class="anime">ОБУВЬ</a></li>
-                <li><a href="#" class="anime">ВЕРХНЯЯ ОДЕЖДА</a></li>
-                <li><a href="#" class="anime">АКСЕССУАРЫ</a></li>
-                <li><a href="#" class="anime">БРЕНДЫ</a></li>
-                <li><a href="#" class="anime">БЛОГ</a></li>
+                <li {% if not category %}class="selected"{% endif %}></li>
+                    {% for c in categories %}
+                <li {% if category.slug == c.slug %}class="selected anime"{% endif %}><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+                    {% endfor %}
             </nav>
-            <div id="search_panel">
-                <input type="text" placeholder="ПОИСК">
-            </div>
-            <div id="search_button">
-                <img src="{% static 'store/img/3.png' %}" id="searchbutton">
-            </div>
         </div>
     </header>
     <div id="banner">
         <img src="{% static 'store/img/Brand.png' %}">
     </div>
-    <!-- Основное содержимое страницы -->
     <main class="wrap">
         {% block content %}
         <div id="rightbar">
@@ -140,8 +124,6 @@
         </div>
         {% endblock %}
     </main>
-
-    <!-- Нижняя часть сайта, включая footer -->
     <footer>
         <div class="wrap">
             <nav id="footer_nav">
