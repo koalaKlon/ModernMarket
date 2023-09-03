@@ -15,4 +15,7 @@ Create a superuser:
  python ./market/manage.py createsuperuser
 ```
 Open you favourite browser and go to localhost:8000
-To shutdown run ```sh docker-compsose down ```
+To shutdown run 
+```sh 
+docker-compsose down
+ ```
