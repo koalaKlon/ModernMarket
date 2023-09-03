@@ -7,7 +7,8 @@ To build this container run in the folder of the docker-compose-file:
 docker-compose build
 ```
 ```sh
-docker-compose run ``` this runs the containers detachted
+docker-compose run
+``` this runs the containers detachted
 Create a superuser:
 ```sh
  python ./market/manage.py createsuperuser
